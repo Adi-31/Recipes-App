@@ -1,22 +1,67 @@
-import { View, Text } from "react-native"
+import { View, Text, FlatList } from "react-native"
 
-const Recipe = () => {
+const data = [
+  {
+    name: "Baked Salmon",
+    ingredients: [
+      { name: "Salmon", amount: 1, measurement: "l lb" },
+      { name: "Pine Nuts", amount: 1, measurement: "cup" },
+      { name: "Butter Lettuce", amount: 2, measurement: "cups" },
+      { name: "Yellow Squash", amount: 1, measurement: "med" },
+      { name: "Olive Oil", amount: 0.5, measurement: "cup" },
+      { name: "Garlic", amount: 3, measurement: "cloves" },
+    ],
+    steps: [
+      "Preheat the oven to 350 degrees.",
+      "Spread the olive oil around a glass baking dish.",
+      "Add the salmon, garlic, and pine nuts to the dish.",
+      "Bake for 15 minutes.",
+      "Add the yellow squash and put back in the oven for 30 mins.",
+      "Remove from oven and let cool for 15 minutes. Add the lettuce and serve.",
+    ],
+  },
+  {
+    name: "Fish Tacos",
+    ingredients: [
+      { name: "Whitefish", amount: 1, measurement: "l lb" },
+      { name: "Cheese", amount: 1, measurement: "cup" },
+      { name: "Iceberg Lettuce", amount: 2, measurement: "cups" },
+      { name: "Tomatoes", amount: 2, measurement: "large" },
+      { name: "Tortillas", amount: 3, measurement: "med" },
+    ],
+    steps: [
+      "Cook the fish on the grill until hot.",
+      "Place the fish on the 3 tortillas.",
+      "Top them with lettuce, tomatoes, and cheese.",
+    ],
+  },
+];
+
+const Recipe = ( ) => {
+  const renderItem = ({ item }) => (
+    <View>
+      <Text>{item.name}</Text>
+    </View>
+  )
+  const listTitle = () => (
+    <View>
+      <Text style={{ fontSize: 40}}>{data[0].name}</Text>
+    </View>
+  )
+  const listTitle2 = () => (
+    <View>
+      <Text style={{ fontSize: 40}}>{data[1].name}</Text>
+    </View>
+  )
+
+
+  
 
   return (
     <View>
-
-    <View style={{ backgroundColor: 'blue', borderRadius: 10, margin: 10, }}>
-        <Text style={{fontSize: 45, fontWeight: '500', color: 'white'}}> Baked Salmon</Text>
-
-    </View>
-    <View style={{ backgroundColor: 'yellow', borderRadius: 10, margin: 10, }}>
-        <Text>Salmon</Text>
-        <Text>Pine Nuts</Text>
-        <Text>Butter Lettuce</Text>
-        <Text>Salmon</Text>
-        <Text>Salmon</Text>
-
-    </View>
+      {/* list of ingredients  */}
+      <FlatList data={data[0].ingredients} renderItem={renderItem} ListHeaderComponent={listTitle} style={{ backgroundColor: 'yellow'}} />
+      <FlatList data={data[1].ingredients} renderItem={renderItem} ListHeaderComponent={listTitle2} style={{ backgroundColor: 'red'}} />
     </View>
   )
 }

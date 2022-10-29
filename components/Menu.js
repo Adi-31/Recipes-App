@@ -8,7 +8,7 @@ const Menu = () => {
     <View>
         <RecipeTitle />
         <Recipe />
-        <Recipe />
+        {/* <Recipe /> */}
 
     </View>
   )
